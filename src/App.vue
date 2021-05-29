@@ -6,11 +6,12 @@
 
 <style>
 html,
-body {
+body{
+  padding:0;
+  margin: 0;
   width: 100%;
   height: 100%;
-  padding:0;
-  margin:0;
+  background-color: blanchedalmond;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -18,5 +19,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
+.section {
+  height: 100%;
+  background-color: #fff;
+}
+.divide {
+  width: 96%;
+  height: 0px;
+  margin: 0 auto;
+  border: 1px solid #000000;
+}
 </style>

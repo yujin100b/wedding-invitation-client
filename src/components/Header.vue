@@ -27,12 +27,13 @@ export default {};
 }
 .Header {
   position: sticky;
-  width: 415px;
+  width: 100%;
   height: 85px;
   left: 0px;
   top: 0px;
   padding-top: 1px;
   background: #ffffff;
+  z-index: 999;
 }
 .Header h1 {
   font-family: "Arca Majora 3 Bold";
@@ -40,13 +41,15 @@ export default {};
   font-weight: 700;
   line-height: 38px;
   letter-spacing: 0.05em;
+  margin-top: 24px;
   text-align: center;
 }
 .Header .line {
   position: absolute;
-  width: 394.5px;
+  width: 96%;
   height: 0px;
-  left: 10.5px;
+  left: 50%;
+  transform: translateX(-50%);
   top: 85px;
   border: 1px solid #000000;
 }

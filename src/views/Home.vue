@@ -60,7 +60,7 @@ export default {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 366px;
+  width: 70%;
   height: 288px;
   margin-top: 160px;
   margin-left: 25px;
@@ -92,12 +92,6 @@ export default {
   letter-spacing: 0em;
   text-align: left;
 }
-.line {
-  width: 91px;
-  height: 0px;
-
-  border: 1px solid #000000;
-}
 .button-wrap {
   margin-left: 25px;
   margin-right: 25px;
@@ -119,54 +113,45 @@ export default {
 }
 .tree {
   position: absolute;
-  width: 65px;
-  height: 135px;
   left: 61px;
   top: 116px;
 }
 .bird {
   position: absolute;
-  width: 96px;
-  height: 73px;
   left: 284px;
   top: 105px;
 }
 .flower {
   position: absolute;
-  width: 54px;
-  height: 101px;
   left: 20px;
   top: 556px;
 }
 .cat {
   position: absolute;
-  width: 166px;
-  height: 133px;
   left: 163px;
   top: 620px;
 }
 .star {
   position: absolute;
-  width: 39px;
-  height: 37px;
   left: 352px;
   top: 683px;
 }
 .gift {
   position: absolute;
-  width: 45px;
-  height: 52px;
   left: 85px;
   top: 748px;
 }
 .grass {
   position: absolute;
-  width: 72px;
-  height: 74px;
   right: -8px;
   bottom: -25px;
 }
-@media screen and (min-width: 415px) {
+.line {
+  width: 91px;
+  height: 0px;
+  border: 1px solid #000000;
+}
+@media screen and (min-width: 414px) {
   .home {
     width: 414px;
     left: 50%;
