@@ -60,7 +60,6 @@ export default {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 70%;
   height: 288px;
   margin-top: 160px;
   margin-left: 25px;
