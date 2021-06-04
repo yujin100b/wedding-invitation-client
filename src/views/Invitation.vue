@@ -345,6 +345,7 @@ export default {
   font-size: 13px;
   line-height: 19px;
   padding-bottom: 0.2rem;
+  margin-left: 15px;
 }
 #rsvp .quest > p.helper-question {
   font-weight: normal;
@@ -354,7 +355,7 @@ export default {
 #rsvp .quest .desc {
   text-align: left;
   font-size: 12px;
-  padding: 15px 28px;
+  padding: 15px;
 }
 
 #rsvp .quest .desc > span {
@@ -407,6 +408,7 @@ export default {
 #rsvp .radio-wrap.vertical {
   text-align: left;
   padding-top: 1rem;
+  margin-left: 15px;
 }
 
 #rsvp .radio-wrap.vertical label {
