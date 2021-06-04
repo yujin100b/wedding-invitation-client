@@ -1,5 +1,5 @@
 <template>
-  <div class="reason_invite">
+  <div id="reason_invite" ref="reason_invite">
     <img src="../assets/bg-skyblue.png" />
     <p>
       동명이 형, 자주 만날 기회는 없지만 항상 감사한 마음입니다. 먼 곳에 있고
@@ -14,7 +14,7 @@ export default {};
 </script>
 
 <style>
-.reason_invite {
+#reason_invite {
   position: relative;
   font-family: Noto Sans KR;
   height: 124px;
@@ -28,12 +28,12 @@ export default {};
   align-items: center;
   justify-content: center;
 }
-.reason_invite img {
+#reason_invite img {
   display: inline-block;
   max-width: 100%;
   margin: 0 auto;
 }
-.reason_invite p {
+#reason_invite p {
   position: absolute;
   width: 95%;
   top: 0;

@@ -1,5 +1,5 @@
 <template>
-<div class="introduce">
+<div class="introduce" id="hero" ref="hero">
         <h3>서새롬 / 박재용</h3>
         <div class="flex">
           <div class="saerom hero">

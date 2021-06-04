@@ -1,5 +1,5 @@
 <template>
-  <div id="cheer" class="section">
+  <div id="cheer" class="section" ref="cheer">
     <div class="cheer-header">
       <h3>정유진님</h3>
       <p>

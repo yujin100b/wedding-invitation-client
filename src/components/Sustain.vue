@@ -1,5 +1,5 @@
 <template>
-  <div id="sustain">
+  <div id="sustain" ref="sustain">
     <h3>지속가능성과 결혼</h3>
     <div class="sustain-text-wrap">
       <p>

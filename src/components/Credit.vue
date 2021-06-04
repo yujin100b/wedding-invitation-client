@@ -1,5 +1,5 @@
 <template>
-  <div id="credit" class="session">
+  <div id="credit" class="session" ref="credit">
     <p>
       기획 | 서새롬 & 박재용 <br />
       협찬 | 양가 가족 및 친지 <br />

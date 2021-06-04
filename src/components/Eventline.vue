@@ -1,5 +1,5 @@
 <template>
-  <div id="eventline">
+  <div id="eventline" ref="eventline">
     <div class="eventline-header">
       <h3>EVENT TIMELINE</h3>
     </div>

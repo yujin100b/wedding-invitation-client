@@ -16,7 +16,7 @@
 
     <div class="divide"></div>
 
-    <div id="rsvp">
+    <div id="rsvp" ref="rsvp">
       <h3>[ ] 님</h3>
       <div class="quest flex">
         <p>결혼식 참석 여부를 알려주세요!</p>
@@ -136,7 +136,7 @@
 
     <div class="divide"></div>
 
-    <div id="funding">
+    <div id="funding" ref="funding">
       <div>
         <h3>사랑의 리퀘스트</h3>
         <p>
@@ -224,7 +224,7 @@
       </div>
     </div>
 
-    <div id="funfacts">
+    <div id="funfacts" ref="funfacts">
       <h3>*Fun Fact*</h3>
       <p>✓ 이 웹 청첩장은 총 [X]회 조회되었습니다.</p>
       <p>
@@ -245,7 +245,7 @@
 
     <div class="divide"></div>
 
-    <div id="after_event">
+    <div id="after_event" ref="after_event">
       <h3>결혼식 이후의 계획</h3>
       <p>
         제주도로 열흘 동안 여행을 떠납니다. 두 사람 모두 운전면허를 따서 돌아올
@@ -272,6 +272,8 @@
 
     <Committee />
     <Credit />
+
+    <Navigator />
   </div>
 </template>
 
@@ -286,6 +288,7 @@ import Eventline from "@/components/Eventline";
 import Cheer from "@/components/Cheer";
 import Committee from "@/components/Committee"
 import Credit from "@/components/Credit"
+import Navigator from "@/components/Navigator"
 
 export default {
   name: "Invitation",
@@ -300,6 +303,7 @@ export default {
     Cheer,
     Committee,
     Credit,
+    Navigator,
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div id="committee">
+  <div id="committee" ref="committee">
     <div class="committee-header">
       <img src="../assets/leaf-left.png" />
       <h3>결혼식 위원회</h3>

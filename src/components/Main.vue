@@ -1,5 +1,5 @@
 <template>
-  <div id="top" class="section">
+  <div id="top" class="section" ref="top">
     <img src="../assets/main.png" />
     <p>
       2021년 6월 27일, 용산가족공원에서 열릴<br />

@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline section">
+  <div class="timeline section" ref="timeline">
     <div class="timeline-header">
       <img src="../assets/icon_clock.png" />
       <h3>TIME LINE</h3>
