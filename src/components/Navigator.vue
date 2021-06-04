@@ -72,7 +72,7 @@ export default {
   background: #ffffff;
   box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 9px 9px 0px 0px;
-  position: fixed;
+  position: sticky;
   bottom: -130px;
   transition: bottom 1s;
   padding-bottom: 1rem;
