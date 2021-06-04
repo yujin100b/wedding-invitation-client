@@ -12,6 +12,17 @@ body {
   width: 100%;
   height: 100%;
 }
+
+textarea {
+  width: 100%;
+  resize: none;
+  background: #f2f2ed;
+  border: 0;
+  border-radius: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,6 +39,7 @@ body {
   margin: 0 auto;
   border: 1px solid #000000;
 }
+
 
 .dropdown{
   position: relative;

@@ -117,7 +117,7 @@ export default {
 }
 .bird {
   position: absolute;
-  left: 284px;
+  right: 14px;
   top: 105px;
 }
 .flower {
@@ -127,12 +127,12 @@ export default {
 }
 .cat {
   position: absolute;
-  left: 163px;
+  left: 150px;
   top: 620px;
 }
 .star {
   position: absolute;
-  left: 352px;
+  right: 14px;
   top: 683px;
 }
 .gift {
