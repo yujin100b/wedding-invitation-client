@@ -9,24 +9,28 @@
     <img class="star" src="../assets/star.png" />
 
     <div class="letter">
-      <h2>[유진][님]께,</h2>
-
+      <h2>{{user.name}}{{user.honor}}께,</h2>
       <p>
-        2021년 6월 27일(일) 치러질 [박재용], [서새롬]의 결혼식을 위해
-        [유진][님]을 위해 쓴 초대장을 전합니다. 저희 두 사람은 팬데믹의 시대에
+        2021년 6월 27일(일) 치러질 {{ couple }}의 결혼식을 위해
+        {{user.name}}{{user.honor}}을 위해 쓴 초대장을 전합니다. 저희 두 사람은 팬데믹의 시대에
         '지속가능성'을 고민하며 결혼을 결심했습니다.
       </p>
 
       <div class="line"></div>
-      <p class="open-please">
-        아래 버튼을 눌러 [유진][님]에게만 전하는 맞춤 청첩장을 열어주세요!
-        [유진][님]을 위한 이 초대장은 [박재용]이 작성했습니다.
+      <p v-if="code" class="open-please">
+        아래 버튼을 눌러 {{user.name}}{{user.honor}}에게만 전하는 맞춤 청첩장을 열어주세요!
+        {{user.name}}{{user.honor}}을 위한 이 초대장은 {{ user.invitor }}이 작성했습니다.
+      </p>
+      <p v-else class="open-please">
+        아래 버튼을 눌러 {{user.name}}{{user.honor}}에게 전하는 청첩장을 열어주세요!
+        {{user.name}}{{user.honor}}을 위한 이 초대장은 {{ user.invitor }}이 작성했습니다.
       </p>
 
       <img class="grass" src="../assets/grass.png" />
     </div>
     <div class="button-wrap">
-      <button>OPEN</button>
+      <button v-if="code" @click="$router.push(`/open/${code}`)">OPEN</button>
+      <button v-else @click="$router.push(`/open`)">OPEN</button>
     </div>
   </div>
 </template>
@@ -35,9 +39,55 @@
 import Header from "@/components/Header";
 export default {
   name: "Home",
+  props: ['code'],
+  data(){
+    return {
+      user : {
+        name: "피카츄",
+        honor: "님",
+        invitee: "박재용, 서새롬",
+        email: '',
+        phone: '',
+        message: `안녕하세요! 저희 두 사람은 팬데믹의 시대에 '지속가능성'을 고민하며 결혼을 결심했습니다.
+      코로나19로 참석 인원도 제한되어 있지만, 인생의 중요한 일을 꼭 알리고
+      싶었습니다. - 삶의 다음 장을 시작하는 서새롬 & 박재용 드림 `
+
+      }
+    }
+  },
   components: {
     Header,
   },
+  mounted(){
+    this.getLetter()
+  },
+  computed:{
+    couple(){
+      if (this.user.invitee == "박재용"){
+        return "박재용, 서새롬"
+      }
+      else if( this.user.invitee == "서새롬"){
+        return "서새롬, 박재용"
+      }
+      else return "박재용, 서새롬"
+    }
+  },
+  methods:{
+    getLetter(){
+      if (this.code){
+        this.$store.dispath('getLetterbyCode', this.code).then(
+          res => {
+            this.user = res.data
+            this.$store.commit('SET_USER', res.data)
+          }
+        )
+      }
+      else{
+        this.$store.commit('SET_USER', this.user)
+      }
+      
+    }
+  }
 };
 </script>
 

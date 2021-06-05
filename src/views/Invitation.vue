@@ -1,7 +1,7 @@
 <template>
   <div class="invite">
     <Header />
-    <Main />
+    <Main :user="user" />
 
     <div id="introduce">
       <ReasonInvite />
@@ -17,17 +17,17 @@
     <div class="divide"></div>
 
     <div id="rsvp" ref="rsvp">
-      <h3>[ ] 님</h3>
+      <h3>{{user.name}}{{user.honor}}</h3>
       <div class="quest flex">
         <p>결혼식 참석 여부를 알려주세요!</p>
         <div class="radio-wrap">
-          <label>
+          <label :class="rsvp.attend_yn == 'Y' ? 'active' : '' ">
             YES
-            <input type="radio" name="attendance" value="Y" />
+            <input type="radio" name="attendance" value="Y" v-model="rsvp.attend_yn" />
           </label>
-          <label>
+          <label :class="rsvp.attend_yn == 'N' ? 'active' : '' ">
             NO
-            <input type="radio" name="attendance" value="N" />
+            <input type="radio" name="attendance" value="N" v-model="rsvp.attend_yn" />
           </label>
         </div>
       </div>
@@ -40,27 +40,27 @@
           <span>전화번호 & 이메일을 알려주세요!</span>
         </div>
         <div class="textfield-wrap">
-          <input type="text" placeholder="이름" />
-          <input type="text" placeholder="전화번호" />
-          <input type="text" placeholder="이메일" />
+          <input type="text" placeholder="이름" v-model="rsvp.name" @change="commitName" />
+          <input type="text" placeholder="전화번호" v-model="rsvp.phone" />
+          <input type="text" placeholder="이메일" v-model="rsvp.email" />
         </div>
       </div>
 
       <div class="quest">
         <p>결혼식에 듣고싶은 BGM이 있다면?</p>
-        <textarea rows="3" cols="20" placeholder="ex) BTS-BUTTER (가수-곡)" />
+        <textarea rows="3" cols="20" placeholder="ex) BTS-BUTTER (가수-곡)" v-model="rsvp.bgm"  />
       </div>
 
       <div class="quest flex">
         <p>아날로그 청첩장을 받으시겠습니까?</p>
         <div class="radio-wrap">
-          <label>
+          <label :class="rsvp.get_paper_invitation == 'Y' ? 'active' : '' ">
             YES
-            <input type="radio" name="get_paper_invitation" value="Y" />
+            <input type="radio" name="get_paper_invitation" value="Y" v-model="rsvp.get_paper_invitation" />
           </label>
-          <label>
+          <label :class="rsvp.get_paper_invitation == 'N' ? 'active' : '' ">
             NO
-            <input type="radio" name="get_paper_invitation" value="N" />
+            <input type="radio" name="get_paper_invitation" value="N" v-model="rsvp.get_paper_invitation" />
           </label>
         </div>
       </div>
@@ -71,40 +71,40 @@
           아이가 생길 경우 참고할 예정이며, 아이의 이름으로 선정 시 소정의
           상품을 제공합니다!
         </p>
-        <textarea rows="3" cols="20" />
+        <textarea rows="3" cols="20" v-model="rsvp.junior_name" />
       </div>
 
-      <div class="quest flex">
+      <div class="quest flex" v-if="rsvp.attend_yn == 'Y'">
         <p>결혼식 참여 방법을 알려주세요!</p>
         <div class="radio-wrap">
-          <label>
+          <label :class="rsvp.method == 'online' ? 'active' : '' ">
             온라인
-            <input type="radio" name="method" value="online" />
+            <input type="radio" name="method" value="online" v-model="rsvp.method" />
           </label>
-          <label>
+          <label :class="rsvp.method == 'offline' ? 'active' : '' ">
             오프라인
-            <input type="radio" name="method" value="offline" />
+            <input type="radio" name="method" value="offline" v-model="rsvp.method" />
           </label>
         </div>
       </div>
 
-      <div class="quest">
+      <div class="quest" v-if="rsvp.attend_yn == 'Y' && rsvp.method == 'offline' " >
         <p>언제부터 방문하실 계획이신가요?</p>
         <div class="radio-wrap vertical">
           <label>
-            <input type="radio" name="event" value="벼룩시장" />
+            <input type="radio" name="event" value="벼룩시장" v-model="rsvp.attend_time" />
             <span class="custom"></span>
             <span class="event-name">벼룩시장 (11~13시)</span>
             <span class="event-left">00 석이 남았습니다</span>
           </label>
           <label>
-            <input type="radio" name="event" value="메인 이벤트" />
+            <input type="radio" name="event" value="메인 이벤트" v-model="rsvp.attend_time" />
             <span class="custom"></span>
             <span class="event-name">메인 이벤트 (13~14시)</span>
             <span class="event-left">00 석이 남았습니다</span>
           </label>
           <label>
-            <input type="radio" name="event" value="피로연" />
+            <input type="radio" name="event" value="피로연" v-model="rsvp.attend_time" />
             <span class="custom"></span>
             <span class="event-name">피로연 (14시~)</span>
             <span class="event-left">00 석이 남았습니다</span>
@@ -112,7 +112,7 @@
         </div>
       </div>
 
-      <div class="box-quest">
+      <div class="box-quest" v-if="rsvp.attend_yn == 'Y' && rsvp.method == 'offline'" >
         <p>
           "오프라인 참석자 중 30명에게 일회용 사진기를 맡겨 행사를 기록하려
           합니다. 아날로그 사진기로 기록에 참여해주시겠어요?"
@@ -120,14 +120,14 @@
         <div class="left-radio-wrap">
           <span>( 00개 남았습니다. }</span>
           <label>
-            <input type="radio" name="yes" value="Y" />
-            <span class="custom"></span>
+            <input type="button" @click="toggle"/>
+            <span class="custom" :class="rsvp.offline_camera_yn == 'Y' ? 'active' : ''"></span>
             <span class="event-name">네</span>
           </label>
         </div>
       </div>
 
-      <button>SUBMIT</button>
+      <button @click="postAttend">SUBMIT</button>
     </div>
 
     <Eventline />
@@ -289,6 +289,7 @@ import Cheer from "@/components/Cheer";
 import Committee from "@/components/Committee"
 import Credit from "@/components/Credit"
 import Navigator from "@/components/Navigator"
+import { mapState } from 'vuex'
 
 export default {
   name: "Invitation",
@@ -305,6 +306,66 @@ export default {
     Credit,
     Navigator,
   },
+  computed:{
+    ...mapState(['user'])
+  },
+  data(){
+    return{
+      rsvp:{
+        attend_yn : '',
+        method: '',
+        name: this.$store.state.user.name,
+        phone: this.$store.state.user.phone,
+        email: this.$store.state.user.email,
+        bgm: '',
+        get_paper_invitation : '',
+        junior_name : '',
+        attend_time :'',
+        offline_camera_yn: 'N'
+      },
+      offline_camera_yn_flag: false
+    }
+  },
+  mounted(){
+
+  },
+  methods: {
+    setInitialData(){
+      this.rsvp = {
+        attend_yn : '',
+        method: '',
+        name: this.$store.state.user.name,
+        phone: this.$store.state.user.phone,
+        email: this.$store.state.user.email,
+        bgm: '',
+        get_paper_invitation : '',
+        junior_name : '',
+        attend_time :'',
+        offline_camera_yn: 'N'
+      },
+      this.offline_camera_yn_flag = false
+    },
+    commitName(e){
+      this.$store.commit('SET_NAME', e.target.value)
+    },
+    toggle(){
+      this.offline_camera_yn_flag = !this.offline_camera_yn_flag
+      if ( this.offline_camera_yn_flag ){
+        this.rsvp.offline_camera_yn = 'Y'
+      }
+      else{
+        this.rsvp.offline_camera_yn = 'N'
+      }
+    },
+    postAttend(){
+      this.$store.dispatch('postAttend', this.rsvp).then(
+        () => { 
+          alert("제출 되었습니다!") 
+          this.setInitialData()
+        }
+      )
+    }
+  }
 };
 </script>
 
@@ -332,6 +393,7 @@ export default {
 #rsvp h3 {
   text-align: left;
   font-weight: bolder;
+  margin-left: 15px;
 }
 #rsvp .quest {
   margin-bottom: 1rem;
@@ -403,6 +465,11 @@ export default {
   height: 0;
   margin: 0;
   display: none;
+}
+
+#rsvp .radio-wrap label.active {
+  background: #000;
+  color: #fff;
 }
 
 #rsvp .radio-wrap.vertical {
@@ -480,6 +547,9 @@ export default {
   background: #c4c4c4;
   border: 1px solid #000000;
   margin-right: 1rem;
+}
+.box-quest label .custom.active{
+  background: #bfffff;
 }
 .box-quest label input:checked + .custom {
   background: #bfffff;

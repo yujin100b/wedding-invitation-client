@@ -3,13 +3,15 @@
     <img src="../assets/main.png" />
     <p>
       2021년 6월 27일, 용산가족공원에서 열릴<br />
-      서새롬 & 박재용의 결혼식에 [정유진][님]을 초대합니다.
+      서새롬 & 박재용의 결혼식에 {{user.name}}{{user.honor}}을 초대합니다.
     </p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props :["user"]
+};
 </script>
 
 <style>

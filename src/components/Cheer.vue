@@ -1,20 +1,40 @@
 <template>
   <div id="cheer" class="section" ref="cheer">
     <div class="cheer-header">
-      <h3>정유진님</h3>
+      <h3>{{ user.name }}님</h3>
       <p>
         결혼을 앞둔 두 사람에게 <br />
         도움이 될 이야기나 응원을 남겨주시겠어요?
       </p>
     </div>
-    <textarea rows="20" cols="22" />
-    <button>SUBMIT</button>
+    <textarea rows="20" cols="22" v-model="cheer_message" />
+    <button @click="postCheer">SUBMIT</button>
     <img src="../assets/saerom_jaeyong.png" />
   </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      cheer_message: "",
+    };
+  },
+  computed: {
+    ...mapState(["user"]),
+  },
+  methods: {
+    postCheer() {
+      this.$store
+        .dispatch("postCheer", {
+          name: this.user.name,
+          cheer_message: this.cheer_message,
+        })
+        .then(() => alert("제출 되었습니다!"));
+    },
+  },
+};
 </script>
 
 <style>
@@ -61,5 +81,4 @@ export default {};
   bottom: 78px;
   right: 122px;
 }
-
 </style>
