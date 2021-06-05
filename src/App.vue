@@ -80,7 +80,7 @@ textarea {
   align-items: center;
 }
 
-#myDropdown label input[type="radio"] {
+#myDropdown label input[type="checkbox"] {
   display: none !important;
 }
 

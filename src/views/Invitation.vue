@@ -17,17 +17,27 @@
     <div class="divide"></div>
 
     <div id="rsvp" ref="rsvp">
-      <h3>{{user.name}}{{user.honor}}</h3>
+      <h3>{{ user.name }}{{ user.honor }}</h3>
       <div class="quest flex">
         <p>결혼식 참석 여부를 알려주세요!</p>
         <div class="radio-wrap">
-          <label :class="rsvp.attend_yn == 'Y' ? 'active' : '' ">
+          <label :class="rsvp.attend_yn == 'Y' ? 'active' : ''">
             YES
-            <input type="radio" name="attendance" value="Y" v-model="rsvp.attend_yn" />
+            <input
+              type="radio"
+              name="attendance"
+              value="Y"
+              v-model="rsvp.attend_yn"
+            />
           </label>
-          <label :class="rsvp.attend_yn == 'N' ? 'active' : '' ">
+          <label :class="rsvp.attend_yn == 'N' ? 'active' : ''">
             NO
-            <input type="radio" name="attendance" value="N" v-model="rsvp.attend_yn" />
+            <input
+              type="radio"
+              name="attendance"
+              value="N"
+              v-model="rsvp.attend_yn"
+            />
           </label>
         </div>
       </div>
@@ -40,7 +50,12 @@
           <span>전화번호 & 이메일을 알려주세요!</span>
         </div>
         <div class="textfield-wrap">
-          <input type="text" placeholder="이름" v-model="rsvp.name" @change="commitName" />
+          <input
+            type="text"
+            placeholder="이름"
+            v-model="rsvp.name"
+            @change="commitName"
+          />
           <input type="text" placeholder="전화번호" v-model="rsvp.phone" />
           <input type="text" placeholder="이메일" v-model="rsvp.email" />
         </div>
@@ -48,19 +63,34 @@
 
       <div class="quest">
         <p>결혼식에 듣고싶은 BGM이 있다면?</p>
-        <textarea rows="3" cols="20" placeholder="ex) BTS-BUTTER (가수-곡)" v-model="rsvp.bgm"  />
+        <textarea
+          rows="3"
+          cols="20"
+          placeholder="ex) BTS-BUTTER (가수-곡)"
+          v-model="rsvp.bgm"
+        />
       </div>
 
       <div class="quest flex">
         <p>아날로그 청첩장을 받으시겠습니까?</p>
         <div class="radio-wrap">
-          <label :class="rsvp.get_paper_invitation == 'Y' ? 'active' : '' ">
+          <label :class="rsvp.get_paper_invitation == 'Y' ? 'active' : ''">
             YES
-            <input type="radio" name="get_paper_invitation" value="Y" v-model="rsvp.get_paper_invitation" />
+            <input
+              type="radio"
+              name="get_paper_invitation"
+              value="Y"
+              v-model="rsvp.get_paper_invitation"
+            />
           </label>
-          <label :class="rsvp.get_paper_invitation == 'N' ? 'active' : '' ">
+          <label :class="rsvp.get_paper_invitation == 'N' ? 'active' : ''">
             NO
-            <input type="radio" name="get_paper_invitation" value="N" v-model="rsvp.get_paper_invitation" />
+            <input
+              type="radio"
+              name="get_paper_invitation"
+              value="N"
+              v-model="rsvp.get_paper_invitation"
+            />
           </label>
         </div>
       </div>
@@ -77,34 +107,62 @@
       <div class="quest flex" v-if="rsvp.attend_yn == 'Y'">
         <p>결혼식 참여 방법을 알려주세요!</p>
         <div class="radio-wrap">
-          <label :class="rsvp.method == 'online' ? 'active' : '' ">
+          <label :class="rsvp.method == 'online' ? 'active' : ''">
             온라인
-            <input type="radio" name="method" value="online" v-model="rsvp.method" />
+            <input
+              type="radio"
+              name="method"
+              value="online"
+              v-model="rsvp.method"
+            />
           </label>
-          <label :class="rsvp.method == 'offline' ? 'active' : '' ">
+          <label :class="rsvp.method == 'offline' ? 'active' : ''">
             오프라인
-            <input type="radio" name="method" value="offline" v-model="rsvp.method" />
+            <input
+              type="radio"
+              name="method"
+              value="offline"
+              v-model="rsvp.method"
+            />
           </label>
         </div>
       </div>
 
-      <div class="quest" v-if="rsvp.attend_yn == 'Y' && rsvp.method == 'offline' " >
+      <div
+        class="quest"
+        v-if="rsvp.attend_yn == 'Y' && rsvp.method == 'offline'"
+      >
         <p>언제부터 방문하실 계획이신가요?</p>
         <div class="radio-wrap vertical">
           <label>
-            <input type="radio" name="event" value="벼룩시장" v-model="rsvp.attend_time" />
+            <input
+              type="radio"
+              name="event"
+              value="벼룩시장"
+              v-model="rsvp.attend_time"
+            />
             <span class="custom"></span>
             <span class="event-name">벼룩시장 (11~13시)</span>
             <span class="event-left">00 석이 남았습니다</span>
           </label>
           <label>
-            <input type="radio" name="event" value="메인 이벤트" v-model="rsvp.attend_time" />
+            <input
+              type="radio"
+              name="event"
+              value="메인 이벤트"
+              v-model="rsvp.attend_time"
+            />
             <span class="custom"></span>
             <span class="event-name">메인 이벤트 (13~14시)</span>
             <span class="event-left">00 석이 남았습니다</span>
           </label>
           <label>
-            <input type="radio" name="event" value="피로연" v-model="rsvp.attend_time" />
+            <input
+              type="radio"
+              name="event"
+              value="피로연"
+              v-model="rsvp.attend_time"
+            />
             <span class="custom"></span>
             <span class="event-name">피로연 (14시~)</span>
             <span class="event-left">00 석이 남았습니다</span>
@@ -112,7 +170,10 @@
         </div>
       </div>
 
-      <div class="box-quest" v-if="rsvp.attend_yn == 'Y' && rsvp.method == 'offline'" >
+      <div
+        class="box-quest"
+        v-if="rsvp.attend_yn == 'Y' && rsvp.method == 'offline'"
+      >
         <p>
           "오프라인 참석자 중 30명에게 일회용 사진기를 맡겨 행사를 기록하려
           합니다. 아날로그 사진기로 기록에 참여해주시겠어요?"
@@ -120,8 +181,11 @@
         <div class="left-radio-wrap">
           <span>( 00개 남았습니다. }</span>
           <label>
-            <input type="button" @click="toggle"/>
-            <span class="custom" :class="rsvp.offline_camera_yn == 'Y' ? 'active' : ''"></span>
+            <input type="button" @click="toggle" />
+            <span
+              class="custom"
+              :class="rsvp.offline_camera_yn == 'Y' ? 'active' : ''"
+            ></span>
             <span class="event-name">네</span>
           </label>
         </div>
@@ -151,50 +215,142 @@
         </p>
         <p class="bold">* 축의금의 일부는 기부 후 내역을 공유하겠습니다.</p>
         <div class="radio-wrap">
-          <label>
+          <label :class="payment_method == '송금하기' ? 'active' : '' ">
             송금하기
-            <input type="radio" name="payment_method" value="송금하기" />
+            <input
+              type="radio"
+              name="payment_method"
+              value="송금하기"
+              v-model="payment_method"
+            />
           </label>
-          <label>
+          <label :class="payment_method == '페이팔' ? 'active' : '' ">
             페이팔
-            <input type="radio" name="payment_method" value="페이팔" />
+            <input
+              type="radio"
+              name="payment_method"
+              value="페이팔"
+              v-model="payment_method"
+            />
           </label>
-          <label>
+          <label :class="payment_method == 'BTC/ETC' ? 'active' : '' ">
             BTC/ETC
-            <input type="radio" name="payment_method" value="BTC/ETC" />
+            <input
+              type="radio"
+              name="payment_method"
+              value="BTC/ETC"
+              v-model="payment_method"
+            />
           </label>
         </div>
 
-        <div class="송금하기">계좌: 카카오뱅크 7979-23-70356 (서새롬)</div>
+        <div v-if="payment_method == '송금하기'" class="payment-wrap" >
+          <span>축의금 전달 방법</span>
+          <div class="payment">
+          <label>
+            <input
+              type="radio"
+              name="payment"
+              value="카카오페이"
+              v-model="funding.payment"
+            />
+            <span class="custom"></span>
+            <span class="event-name">카카오페이</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="payment"
+              value="송금"
+              v-model="funding.payment"
+            />
+            <span class="custom"></span>
+            <span class="event-name">송금하기</span>
+          </label>
+          </div>
+        </div>
+
+        <div v-if="payment_method == 'BTC/ETC'" class="payment-wrap" >
+        <span>축의금 전달 방법</span>
+        <div class="payment">
+          <label>
+            <input
+              type="radio"
+              name="payment"
+              value="BTC"
+              v-model="funding.payment"
+            />
+            <span class="custom"></span>
+            <span class="event-name">BTC</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="payment"
+              value="ETC"
+              v-model="funding.payment"
+            />
+            <span class="custom"></span>
+            <span class="event-name">ETC</span>
+          </label>
+        </div>
+        </div>
 
         <div class="textfield-wrap">
           <input type="text" placeholder="이름" />
           <input type="text" placeholder="축의금 금액" />
           <div class="dropdown">
-            <button class="dropbtn">축의금을 어디에 쓸까요?</button>
-            <div id="myDropdown" class="dropdown-content">
+            <button class="dropbtn" @click="showdropdown = !showdropdown">
+              {{  how_to_useText  }} 
+            </button>
+            <div id="myDropdown" class="dropdown-content" :class="showdropdown ? 'show' : '' ">
               <label>
-                <input type="radio" name="how_to_use" value="Y" />
+                <input
+                  type="checkbox"
+                  name="how_to_use"
+                  value="혼수 및 주거환경 개선"
+                  v-model="funding.how_to_use"
+                />
                 <span class="custom"></span>
                 <span class="event-name">혼수 및 주거환경 개선</span>
               </label>
               <label>
-                <input type="radio" name="how_to_use" value="Y" />
+                <input
+                  type="checkbox"
+                  name="how_to_use"
+                  value="국내외 친지 방문 경비"
+                  v-model="funding.how_to_use"
+                />
                 <span class="custom"></span>
                 <span class="event-name">국내외 친지 방문 경비</span>
               </label>
               <label>
-                <input type="radio" name="how_to_use" value="Y" />
+                <input
+                  type="checkbox"
+                  name="how_to_use"
+                  value="아이를 위해 쓰기"
+                  v-model="funding.how_to_use"
+                />
                 <span class="custom"></span>
                 <span class="event-name">아이를 위해 쓰기</span>
               </label>
               <label>
-                <input type="radio" name="how_to_use" value="Y" />
+                <input
+                  type="checkbox"
+                  name="how_to_use"
+                  value="HODL (2030년까지)"
+                  v-model="funding.how_to_use"
+                />
                 <span class="custom"></span>
                 <span class="event-name">HODL (2030년까지)</span>
               </label>
               <label>
-                <input type="radio" name="how_to_use" value="Y" />
+                <input
+                  type="checkbox"
+                  name="how_to_use"
+                  value="어디든 필요한 곳에"
+                  v-model="funding.how_to_use"
+                />
                 <span class="custom"></span>
                 <span class="event-name">어디든 필요한 곳에</span>
               </label>
@@ -212,12 +368,16 @@
           </p>
           <div class="left-radio-wrap">
             <label>
-              <input type="radio" name="subscribe" value="Y" />
+              <input type="button" name="subscribe" value="Y" />
               <span class="custom"></span>
               <span class="event-name">네</span>
             </label>
             <input type="text" placeholder="이메일" />
           </div>
+        </div>
+
+        <div v-if="payment == '송금하기'" class="송금하기">
+          계좌: 카카오뱅크 7979-23-70356 (서새롬)
         </div>
 
         <button class="pay">SUBMIT</button>
@@ -237,8 +397,8 @@
       </p>
       <p>✓ 축의금을 낸 분 중 [김]씨 성을 가진 분이 제일 많네요!</p>
       <p>
-        ✓ 축의금 금액은 [6]자리 대가 제일 많고, 가장 많이 낸 사람은 [ 00시 --구 ]
-        에 살고 있습니다.
+        ✓ 축의금 금액은 [6]자리 대가 제일 많고, 가장 많이 낸 사람은 [ 00시 --구
+        ] 에 살고 있습니다.
       </p>
       <p>✓ 결혼식 BGM 인기 곡은 [ BTS - BUTTER ] 입니다</p>
     </div>
@@ -286,10 +446,10 @@ import Timeline from "@/components/Timeline";
 import Sustain from "@/components/Sustain";
 import Eventline from "@/components/Eventline";
 import Cheer from "@/components/Cheer";
-import Committee from "@/components/Committee"
-import Credit from "@/components/Credit"
-import Navigator from "@/components/Navigator"
-import { mapState } from 'vuex'
+import Committee from "@/components/Committee";
+import Credit from "@/components/Credit";
+import Navigator from "@/components/Navigator";
+import { mapState } from "vuex";
 
 export default {
   name: "Invitation",
@@ -306,66 +466,73 @@ export default {
     Credit,
     Navigator,
   },
-  computed:{
-    ...mapState(['user'])
-  },
-  data(){
-    return{
-      rsvp:{
-        attend_yn : '',
-        method: '',
+  data() {
+    return {
+      rsvp: {
+        attend_yn: "",
+        method: "",
         name: this.$store.state.user.name,
         phone: this.$store.state.user.phone,
         email: this.$store.state.user.email,
-        bgm: '',
-        get_paper_invitation : '',
-        junior_name : '',
-        attend_time :'',
-        offline_camera_yn: 'N'
+        bgm: "",
+        get_paper_invitation: "",
+        junior_name: "",
+        attend_time: "",
+        offline_camera_yn: "N",
       },
-      offline_camera_yn_flag: false
-    }
+      offline_camera_yn_flag: false,
+      showdropdown: true,
+      payment_method: "",
+      funding: {
+        payment: "",
+        how_to_use: [],
+        name : this.$store.state.user.name,
+        
+      },
+    };
   },
-  mounted(){
-
+  mounted() {},
+  computed:{
+    ...mapState(["user"]),
+    how_to_useText(){
+      if (this.funding.how_to_use.length > 0 ) return this.funding.how_to_use.join(', ')
+      else return "축의금을 어디에 쓸까요?"
+    }
   },
   methods: {
-    setInitialData(){
-      this.rsvp = {
-        attend_yn : '',
-        method: '',
+    setInitialData() {
+      (this.rsvp = {
+        attend_yn: "",
+        method: "",
         name: this.$store.state.user.name,
         phone: this.$store.state.user.phone,
         email: this.$store.state.user.email,
-        bgm: '',
-        get_paper_invitation : '',
-        junior_name : '',
-        attend_time :'',
-        offline_camera_yn: 'N'
-      },
-      this.offline_camera_yn_flag = false
+        bgm: "",
+        get_paper_invitation: "",
+        junior_name: "",
+        attend_time: "",
+        offline_camera_yn: "N",
+      }),
+        (this.offline_camera_yn_flag = false);
     },
-    commitName(e){
-      this.$store.commit('SET_NAME', e.target.value)
+    commitName(e) {
+      this.$store.commit("SET_NAME", e.target.value);
     },
-    toggle(){
-      this.offline_camera_yn_flag = !this.offline_camera_yn_flag
-      if ( this.offline_camera_yn_flag ){
-        this.rsvp.offline_camera_yn = 'Y'
+    toggle() {
+      this.offline_camera_yn_flag = !this.offline_camera_yn_flag;
+      if (this.offline_camera_yn_flag) {
+        this.rsvp.offline_camera_yn = "Y";
+      } else {
+        this.rsvp.offline_camera_yn = "N";
       }
-      else{
-        this.rsvp.offline_camera_yn = 'N'
-      }
     },
-    postAttend(){
-      this.$store.dispatch('postAttend', this.rsvp).then(
-        () => { 
-          alert("제출 되었습니다!") 
-          this.setInitialData()
-        }
-      )
-    }
-  }
+    postAttend() {
+      this.$store.dispatch("postAttend", this.rsvp).then(() => {
+        alert("제출 되었습니다!");
+        this.setInitialData();
+      });
+    },
+  },
 };
 </script>
 
@@ -548,7 +715,7 @@ export default {
   border: 1px solid #000000;
   margin-right: 1rem;
 }
-.box-quest label .custom.active{
+.box-quest label .custom.active {
   background: #bfffff;
 }
 .box-quest label input:checked + .custom {
@@ -644,6 +811,47 @@ export default {
   margin-right: 12px;
 }
 
+#funding .payment-wrap{
+  display: flex;
+  align-items: center;
+  height: 47px;
+  border-bottom: 1px solid #000;
+  font-size: 13px;
+  padding-left: 1rem;
+  justify-content: space-between;
+}
+
+#funding .payment{
+  display: flex;
+}
+
+#funding .payment label{
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+#funding .payment label input {
+  width: 0;
+  height: 0;
+  margin: 0;
+  display: none;
+}
+
+#funding .payment .custom{
+    display: inline-block;
+  width: 19px;
+  height: 19px;
+  border-radius: 19px;
+  background: #c4c4c4;
+  border: 1px solid #000000;
+  margin-right: .5rem;
+}
+
+#funding .payment label input:checked + .custom{
+  background: #ffff00;
+}
+
 .송금하기 {
   visibility: hidden;
   font-family: Noto Sans KR;
@@ -691,49 +899,49 @@ export default {
   font-weight: bold;
 }
 
-#funfacts{
+#funfacts {
   background: url(../assets/bg-dot.png);
 }
 
-#funfacts p{
+#funfacts p {
   border: 1px dashed #000;
   padding: 5px;
   word-break: keep-all;
 }
-#funfacts p:nth-child(1){
+#funfacts p:nth-child(1) {
   margin-bottom: 19px;
 }
 
-#funfacts p:nth-child(2){
+#funfacts p:nth-child(2) {
   margin-bottom: 9px;
 }
 
-#funfacts p:nth-child(2){
+#funfacts p:nth-child(2) {
   margin-bottom: 19px;
 }
 
-#funfacts p:nth-child(3){
+#funfacts p:nth-child(3) {
   margin-bottom: 14px;
 }
 
-#funfacts p:nth-child(3){
+#funfacts p:nth-child(3) {
   margin-bottom: 12px;
 }
 
-#funfacts p:nth-child(3n-1){
-  background: #D0EEC6;
+#funfacts p:nth-child(3n-1) {
+  background: #d0eec6;
   margin-left: 34px;
   margin-right: 97px;
 }
 
-#funfacts p:nth-child(3n){
-  background: #71E097;
+#funfacts p:nth-child(3n) {
+  background: #71e097;
   margin-left: 78px;
   margin-right: 9px;
 }
 
-#funfacts p:nth-child(3n-2){
-  background: #B3EBA0;
+#funfacts p:nth-child(3n-2) {
+  background: #b3eba0;
   margin-left: 11px;
   margin-right: 76px;
 }
@@ -754,14 +962,14 @@ export default {
   font-size: 13px;
 }
 
-#after_event h3{
+#after_event h3 {
   background: url(../assets/curlyline-yy.png);
   background-size: 138px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-#after_event{
+#after_event {
   background: #f2f2ed;
 }
 
