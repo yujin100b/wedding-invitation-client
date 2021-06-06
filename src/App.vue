@@ -40,14 +40,12 @@ textarea {
   border: 1px solid #000000;
 }
 
-
-.dropdown{
+.dropdown {
   position: relative;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
   position: absolute;
   top: 52px;
   right: 10px;
@@ -97,9 +95,25 @@ textarea {
   background: #bfffff;
 }
 
+#smart-button-container {
+  display: none;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: 1px solid #000;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
 @media screen and (min-width: 414px) {
   .mobile {
     border: 2px solid #000;
+  }
+  #smart-button-container {
+    width: 300px;
   }
 }
 </style>

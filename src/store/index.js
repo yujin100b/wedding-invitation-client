@@ -25,6 +25,9 @@ export default new Vuex.Store({
     }
   },
   actions:{
+    hit(){
+      return axios.get(`${apiURL}/hit/`)
+    },
     getLetterbyCode(state, code){
       return axios.get(`${apiURL}/letter/${code}`)
     },
@@ -44,7 +47,7 @@ export default new Vuex.Store({
       return axios.post(`${apiURL}/subscriber/`, payload)
     },
     getFunFact(){
-      console.log('getFunFact')
+      return axios.get(`${apiURL}/funfact/`)
     }
   }
 })

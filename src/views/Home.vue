@@ -60,6 +60,7 @@ export default {
   },
   mounted(){
     this.getLetter()
+    this.hit()
   },
   computed:{
     couple(){
@@ -73,6 +74,9 @@ export default {
     }
   },
   methods:{
+    hit(){
+      this.$store.dispatch('hit')
+    },
     getLetter(){
       if (this.code){
         this.$store.dispath('getLetterbyCode', this.code).then(

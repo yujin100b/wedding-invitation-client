@@ -28,7 +28,7 @@
       <div class="eventline">
         <img src="../assets/event3.png" />
         <p>
-          <span>피로연 <span class="timing"> (14시~)</span></span> 
+          <span>피로연 <span class="timing"> (14시~)</span></span>
           새롬 & 재용도 함께 하는 스탠드업 코미디 모임 '동북구연'의 공연과 함께
           파티를!
           <span class="ice-cream"
@@ -37,12 +37,19 @@
           >
         </p>
       </div>
+      <button class="map" @click="goTomap">오시는 길 >></button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    goTomap() {
+      window.open("http://kko.to/nvygjskDB");
+    },
+  },
+};
 </script>
 
 <style>
@@ -113,5 +120,17 @@ export default {};
   font-size: 0.65rem;
   line-height: 17px;
   color: #6cab6e;
+}
+.map {
+  cursor: pointer;
+  float: right;
+  border: none;
+  background: url(../assets/curlyline-yy.png);
+  background-size: 138px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-weight: bolder;
+  font-size: 15px;
+  line-height: 28px;
 }
 </style>

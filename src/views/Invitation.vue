@@ -215,7 +215,7 @@
         </p>
         <p class="bold">* 축의금의 일부는 기부 후 내역을 공유하겠습니다.</p>
         <div class="radio-wrap">
-          <label :class="payment_method == '송금하기' ? 'active' : '' ">
+          <label :class="payment_method == '송금하기' ? 'active' : ''">
             송금하기
             <input
               type="radio"
@@ -224,16 +224,17 @@
               v-model="payment_method"
             />
           </label>
-          <label :class="payment_method == '페이팔' ? 'active' : '' ">
-            페이팔
+          <label :class="payment_method == '페이팔' ? 'active' : ''">
+            PAYPAL
             <input
               type="radio"
               name="payment_method"
               value="페이팔"
               v-model="payment_method"
+              @click="payment = '페이팔'"
             />
           </label>
-          <label :class="payment_method == 'BTC/ETC' ? 'active' : '' ">
+          <label :class="payment_method == 'BTC/ETC' ? 'active' : ''">
             BTC/ETC
             <input
               type="radio"
@@ -244,72 +245,92 @@
           </label>
         </div>
 
-        <div v-if="payment_method == '송금하기'" class="payment-wrap" >
+        <div v-if="payment_method == '송금하기'" class="송금하기">
+          계좌: 카카오뱅크 7979-23-70356 (서새롬)
+        </div>
+        <div v-if="payment_method == '송금하기'" class="payment-wrap">
           <span>축의금 전달 방법</span>
           <div class="payment">
-          <label>
-            <input
-              type="radio"
-              name="payment"
-              value="카카오페이"
-              v-model="funding.payment"
-            />
-            <span class="custom"></span>
-            <span class="event-name">카카오페이</span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="payment"
-              value="송금"
-              v-model="funding.payment"
-            />
-            <span class="custom"></span>
-            <span class="event-name">송금하기</span>
-          </label>
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="카카오페이"
+                v-model="funding.payment"
+              />
+              <span class="custom"></span>
+              <span class="event-name">카카오페이</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="송금"
+                v-model="funding.payment"
+                @click="() => settingCopyText('송금')"
+              />
+              <span class="custom"></span>
+              <span class="event-name">송금하기</span>
+            </label>
+          </div>
+        </div>
+        <div v-if="payment_method == 'BTC/ETC'" class="payment-wrap">
+          <span>축의금 전달 방법</span>
+          <div class="payment">
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="BTC"
+                v-model="funding.payment"
+                @click="() => settingCopyText('BTC')"
+              />
+              <span class="custom"></span>
+              <span class="event-name">BTC</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="payment"
+                value="ETC"
+                v-model="funding.payment"
+                @click="() => settingCopyText('ETC')"
+              />
+              <span class="custom"></span>
+              <span class="event-name">ETC</span>
+            </label>
           </div>
         </div>
 
-        <div v-if="payment_method == 'BTC/ETC'" class="payment-wrap" >
-        <span>축의금 전달 방법</span>
-        <div class="payment">
-          <label>
-            <input
-              type="radio"
-              name="payment"
-              value="BTC"
-              v-model="funding.payment"
-            />
-            <span class="custom"></span>
-            <span class="event-name">BTC</span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="payment"
-              value="ETC"
-              v-model="funding.payment"
-            />
-            <span class="custom"></span>
-            <span class="event-name">ETC</span>
-          </label>
-        </div>
-        </div>
-
         <div class="textfield-wrap">
-          <input type="text" placeholder="이름" />
-          <input type="text" placeholder="축의금 금액" />
+          <input
+            id="description"
+            type="text"
+            placeholder="이름"
+            v-model="funding.name"
+          />
+          <input
+            id="amount"
+            type="number"
+            placeholder="축의금 금액"
+            v-model="funding.amount"
+          />
           <div class="dropdown">
             <button class="dropbtn" @click="showdropdown = !showdropdown">
-              {{  how_to_useText  }} 
+              {{ how_to_spendText }}
             </button>
-            <div id="myDropdown" class="dropdown-content" :class="showdropdown ? 'show' : '' ">
+            <div
+              id="myDropdown"
+              class="dropdown-content"
+              v-if="showdropdown == true"
+              v-click-outside="onClickOutside"
+            >
               <label>
                 <input
                   type="checkbox"
-                  name="how_to_use"
+                  name="how_to_spend"
                   value="혼수 및 주거환경 개선"
-                  v-model="funding.how_to_use"
+                  v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
                 <span class="event-name">혼수 및 주거환경 개선</span>
@@ -317,9 +338,9 @@
               <label>
                 <input
                   type="checkbox"
-                  name="how_to_use"
+                  name="how_to_spend"
                   value="국내외 친지 방문 경비"
-                  v-model="funding.how_to_use"
+                  v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
                 <span class="event-name">국내외 친지 방문 경비</span>
@@ -327,9 +348,9 @@
               <label>
                 <input
                   type="checkbox"
-                  name="how_to_use"
+                  name="how_to_spend"
                   value="아이를 위해 쓰기"
-                  v-model="funding.how_to_use"
+                  v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
                 <span class="event-name">아이를 위해 쓰기</span>
@@ -337,9 +358,9 @@
               <label>
                 <input
                   type="checkbox"
-                  name="how_to_use"
+                  name="how_to_spend"
                   value="HODL (2030년까지)"
-                  v-model="funding.how_to_use"
+                  v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
                 <span class="event-name">HODL (2030년까지)</span>
@@ -347,9 +368,9 @@
               <label>
                 <input
                   type="checkbox"
-                  name="how_to_use"
+                  name="how_to_spend"
                   value="어디든 필요한 곳에"
-                  v-model="funding.how_to_use"
+                  v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
                 <span class="event-name">어디든 필요한 곳에</span>
@@ -359,6 +380,7 @@
           <input
             type="text"
             placeholder="오프라인 불참시 답례품 수령을 위한 주소를 알려주세요."
+            v-model="funding.address"
           />
         </div>
 
@@ -368,39 +390,68 @@
           </p>
           <div class="left-radio-wrap">
             <label>
-              <input type="button" name="subscribe" value="Y" />
-              <span class="custom"></span>
+              <input
+                type="button"
+                @click="() => subscribeToggle('중요한 순간')"
+              />
+              <span
+                class="custom"
+                :class="
+                  subscriber.where_to_regist == '중요한 순간' ? 'active' : ''
+                "
+              ></span>
               <span class="event-name">네</span>
             </label>
-            <input type="text" placeholder="이메일" />
+            <input
+              type="text"
+              placeholder="이메일"
+              v-model="subscriber.email"
+            />
           </div>
         </div>
 
-        <div v-if="payment == '송금하기'" class="송금하기">
-          계좌: 카카오뱅크 7979-23-70356 (서새롬)
-        </div>
+        <input class="copy" v-model="copy_string" v-show="false" />
 
-        <button class="pay">SUBMIT</button>
+        <button
+          v-if="this.payment_method == '페이팔'"
+          class="pay"
+          @click="showPaypal"
+        >
+          SUBMIT
+        </button>
+
+        <button
+          v-else
+          class="pay"
+          @click="postFunding"
+          v-clipboard:copy="copy_string"
+        >
+          SUBMIT
+        </button>
       </div>
     </div>
 
     <div id="funfacts" ref="funfacts">
       <h3>*Fun Fact*</h3>
-      <p>✓ 이 웹 청첩장은 총 [X]회 조회되었습니다.</p>
+      <p>✓ 이 웹 청첩장은 총 {{ funfact.hit }}회 조회되었습니다.</p>
       <p>
-        ✓ 코로나 시국에 맞춰, 참석자 중 [X]%가 온라인 참석을, [X]%는 하이라이트
-        비디오만 수령을 합니다.
+        ✓ 코로나 시국에 맞춰, 참석자 중 {{ funfact.online }}%가 온라인 참석을,
+        {{ funfact.highlight }}%는 하이라이트 비디오만 수령을 합니다.
       </p>
       <p>
-        ✓ 본 페이지에 접속 중인 [X]님을 제외하고, 가장 최근 축의금을 낸 분은
-        [이XX]님! [X초] 전에 왔다 가셨습니다.
+        ✓ 본 페이지에 접속 중인 {{ user.name }}님을 제외하고, 가장 최근 축의금을
+        낸 분은 {{ funfact.recent_name }}님! {{ funfact.recent_time }}초 전에
+        왔다 가셨습니다.
       </p>
-      <p>✓ 축의금을 낸 분 중 [김]씨 성을 가진 분이 제일 많네요!</p>
       <p>
-        ✓ 축의금 금액은 [6]자리 대가 제일 많고, 가장 많이 낸 사람은 [ 00시 --구
-        ] 에 살고 있습니다.
+        ✓ 축의금을 낸 분 중 {{ funfact.max_surname }}씨 성을 가진 분이 제일
+        많네요!
       </p>
-      <p>✓ 결혼식 BGM 인기 곡은 [ BTS - BUTTER ] 입니다</p>
+      <p>
+        ✓ 축의금 금액은 {{ funfact.max_amount_len }}자리 대가 제일 많고, 가장
+        많이 낸 사람은 {{ funfact.max_amount_addr }}에 살고 있습니다.
+      </p>
+      <p>✓ 결혼식 BGM 인기 곡은 {{ funfact.max_count_bgm }}입니다</p>
     </div>
 
     <div class="divide"></div>
@@ -420,14 +471,24 @@
         </p>
         <div class="left-radio-wrap">
           <label>
-            <input type="radio" name="subscribe" value="Y" />
-            <span class="custom"></span>
+            <input
+              type="button"
+              @click="() => subscribeToggle('결혼식 이후의 소식')"
+            />
+            <span
+              class="custom"
+              :class="
+                subscriber.where_to_regist == '결혼식 이후의 소식'
+                  ? 'active'
+                  : ''
+              "
+            ></span>
             <span class="event-name">네</span>
           </label>
-          <input type="text" placeholder="이메일" />
+          <input type="text" placeholder="이메일" v-model="subscriber.email" />
         </div>
       </div>
-      <button>SUBMIT</button>
+      <button @click="postSubscriber">SUBMIT</button>
     </div>
 
     <Committee />
@@ -449,7 +510,9 @@ import Cheer from "@/components/Cheer";
 import Committee from "@/components/Committee";
 import Credit from "@/components/Credit";
 import Navigator from "@/components/Navigator";
+import vClickOutside from "v-click-outside";
 import { mapState } from "vuex";
+// import PayPal from 'vue-paypal-checkout'
 
 export default {
   name: "Invitation",
@@ -466,6 +529,9 @@ export default {
     Credit,
     Navigator,
   },
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   data() {
     return {
       rsvp: {
@@ -481,23 +547,35 @@ export default {
         offline_camera_yn: "N",
       },
       offline_camera_yn_flag: false,
-      showdropdown: true,
-      payment_method: "",
+      showdropdown: false,
+      payment_method: "송금하기",
+      copy_string: "",
       funding: {
         payment: "",
-        how_to_use: [],
-        name : this.$store.state.user.name,
-        
+        how_to_spend: [],
+        name: this.$store.state.user.name,
+        amount: "",
+        address: "",
       },
+      subscriber_toggle: false,
+      subscriber: {
+        name: this.$store.state.user.name,
+        email: this.$store.state.user.email,
+        where_to_regist: "",
+      },
+      funfact: {},
     };
   },
-  mounted() {},
-  computed:{
+  mounted() {
+    this.getFunfact();
+  },
+  computed: {
     ...mapState(["user"]),
-    how_to_useText(){
-      if (this.funding.how_to_use.length > 0 ) return this.funding.how_to_use.join(', ')
-      else return "축의금을 어디에 쓸까요?"
-    }
+    how_to_spendText() {
+      if (this.funding.how_to_spend.length > 0)
+        return this.funding.how_to_spend.join(", ");
+      else return "축의금을 어디에 쓸까요?";
+    },
   },
   methods: {
     setInitialData() {
@@ -526,10 +604,91 @@ export default {
         this.rsvp.offline_camera_yn = "N";
       }
     },
+    subscribeToggle(where) {
+      this.subscriber_toggle = !this.subscriber_toggle;
+      if (this.subscriber_toggle) {
+        this.subscriber.where_to_regist = where;
+      } else {
+        this.subscriber.where_to_regist = "";
+      }
+    },
+    onClickOutside() {
+      this.showdropdown = false;
+      const modal = window.document.querySelector("#smart-button-container");
+      modal.style.display = "none";
+    },
     postAttend() {
       this.$store.dispatch("postAttend", this.rsvp).then(() => {
         alert("제출 되었습니다!");
         this.setInitialData();
+      });
+    },
+    settingCopyText(payment) {
+      if (payment == "송금") {
+        this.copy_string = "카카오뱅크 7979-23-70356 서새롬";
+      } else if (payment == "BTC") {
+        this.copy_string = "14zM717FC59NhypkbzfsvmAd9FTicXUL49";
+      } else if (payment == "ETC") {
+        this.copy_string = "0xa4f29ad904B90bB57743546b27019d580452B358";
+      }
+    },
+    postFunding() {
+      this.$copyText(this.copy_string);
+      this.$store
+        .dispatch("postFunding", {
+          ...this.funding,
+          how_to_spend: this.funding.how_to_spend.join(","),
+        })
+        .then(() => {
+          if (this.funding.payment == "카카오페이") {
+            window.open("https://qr.kakaopay.com/281006011000012382661631");
+          } else if (this.funding.payment == "송금") {
+            alert("계좌 정보가 클립보드에 복사되었습니다!");
+          } else if (this.funding.payment == "BTC") {
+            alert("BTC 전자 지갑 정보가 클립보드에 복사되었습니다!");
+          } else if (this.funding.payment == "ETC") {
+            alert("ETC 전자 지갑 정보가 클립보드에 복사되었습니다!");
+          }
+        });
+      if (this.subscriber.where_to_regist.length > 0) {
+        this.postSubscriber();
+      }
+    },
+    onCopy: function (e) {
+      alert("You just copied the following text to the clipboard: " + e.text);
+    },
+    onError: function (e) {
+      alert("Failed to copy the text to the clipboard");
+      console.log(e);
+    },
+    postSubscriber() {
+      this.$store.dispatch("postSubscriber", this.subscriber).then(() => {
+        if (this.subscriber.where_to_regist == "결혼식 이후의 소식") {
+          alert("등록 되었습니다!");
+          this.subscriber = {
+            name: this.$store.state.user.name,
+            email: "",
+            where_to_regist: "",
+          };
+        }
+      });
+    },
+    showPaypal() {
+      if (this.subscriber.where_to_regist.length > 0) {
+        this.postSubscriber();
+      }
+      if (this.funding.amount.length > 0 && this.funding.name.length > 0) {
+        const modal = window.document.querySelector("#smart-button-container");
+        modal.style.display = "block";
+        this.$store.dispatch("postFunding", {
+          ...this.funding,
+          how_to_spend: this.funding.how_to_spend.join(","),
+        });
+      }
+    },
+    getFunfact() {
+      this.$store.dispatch("getFunFact").then((res) => {
+        this.funfact = res.data.r;
       });
     },
   },
@@ -811,7 +970,7 @@ export default {
   margin-right: 12px;
 }
 
-#funding .payment-wrap{
+#funding .payment-wrap {
   display: flex;
   align-items: center;
   height: 47px;
@@ -821,11 +980,11 @@ export default {
   justify-content: space-between;
 }
 
-#funding .payment{
+#funding .payment {
   display: flex;
 }
 
-#funding .payment label{
+#funding .payment label {
   margin-right: 1rem;
   display: flex;
   align-items: center;
@@ -838,22 +997,21 @@ export default {
   display: none;
 }
 
-#funding .payment .custom{
-    display: inline-block;
+#funding .payment .custom {
+  display: inline-block;
   width: 19px;
   height: 19px;
   border-radius: 19px;
   background: #c4c4c4;
   border: 1px solid #000000;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
-#funding .payment label input:checked + .custom{
+#funding .payment label input:checked + .custom {
   background: #ffff00;
 }
 
 .송금하기 {
-  visibility: hidden;
   font-family: Noto Sans KR;
   font-weight: bold;
   font-size: 12px;
@@ -864,9 +1022,6 @@ export default {
   text-align: left;
   width: 100%;
   max-width: 324px;
-}
-.송금하기.active {
-  visibility: visible;
 }
 
 #funding .textfield-wrap input,
