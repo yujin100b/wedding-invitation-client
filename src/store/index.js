@@ -5,7 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 
 /* eslint-disabled */
 
-const apiURL = "http://localhost:8000/api"
+const apiURL = "http://54.180.81.21:8000/api"
 
 Vue.use(Vuex)
 

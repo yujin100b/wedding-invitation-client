@@ -9,13 +9,13 @@
       <span
         :class="id == 'reason_invite' ? 'active' : ''"
         @click="scroll('reason_invite')"
-        >초대의 사유</span
+        >인사말</span
       >
       <span :class="id == 'hero' ? 'active' : ''" @click="scroll('hero')"
-        >서새롬 & 박재용 소개</span
+        >서새롬 & 박재용</span
       >
       <span :class="id == 'sustain' ? 'active' : ''" @click="scroll('sustain')"
-        >지속가능성과 결혼</span
+        >지속가능성</span
       >
       <span
         :class="id == 'eventline' ? 'active' : ''"
@@ -23,18 +23,18 @@
         >행사 일정</span
       >
       <span :class="id == 'rsvp' ? 'active' : ''" @click="scroll('rsvp')"
-        >ON/OFF 참석여부</span
+        >참석여부</span
       >
       <span :class="id == 'cheer' ? 'active' : ''" @click="scroll('cheer')"
-        >결혼에 관한 생각</span
+        >설문조사</span
       >
       <span :class="id == 'funding' ? 'active' : ''" @click="scroll('funding')"
-        >전통 크라우드 펀딩 & 답례품</span
+        >후원하기</span
       >
       <span
         :class="id == 'after_event' ? 'active' : ''"
         @click="scroll('after_event')"
-        >결혼 이후</span
+        >결혼식 이후</span
       >
       <span
         :class="id == 'committee' ? 'active' : ''"
@@ -73,7 +73,7 @@ export default {
   box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 9px 9px 0px 0px;
   position: sticky;
-  bottom: -130px;
+  bottom: 0px;
   transition: bottom 1s;
   padding-bottom: 1rem;
 }
@@ -81,22 +81,28 @@ export default {
   padding: 13px;
 }
 .navigator.active {
-  bottom: 0px;
+  bottom: -130px;
 }
 .navigator .link-list {
   word-break: keep-all;
+  /* text-align: left; */
+  padding:10px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .navigator span {
   font-weight: 500;
   font-size: 12.5px;
   line-height: 39px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-bottom: 1px solid #000;
   padding: 10px 0;
+  font-weight: bold;
 }
 
 .navigator span.active {
   background: #bfffff;
+  font-weight: 900;
 }
 </style>

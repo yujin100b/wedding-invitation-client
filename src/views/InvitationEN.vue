@@ -1,24 +1,28 @@
 <template>
   <div class="invite">
     <Header />
-    <Main :user="user" />
+    <MainEN />
 
     <div id="introduce">
-      <ReasonInvite />
+      <ReasonInviteEN />
       <div class="divide"></div>
-      <Introduce />
-      <Timeline />
+      <IntroduceEN />
+      <TimelineEN />
     </div>
 
     <div class="divide"></div>
 
-    <Sustain />
+    <SustainEN />
+
+    <div class="divide"></div>
+
+    <EventlineEN />
 
     <div class="divide"></div>
 
     <div id="rsvp" ref="rsvp">
       <div class="quest flex">
-        <p>오프라인으로 참석하실 건가요?</p>
+        <p>Will you attend the event off-line?</p>
         <div class="radio-wrap">
           <label :class="rsvp.attend_yn == 'Y' ? 'active' : ''">
             YES
@@ -43,10 +47,10 @@
 
       <div class="quest">
         <div class="desc">
-          결혼식의 메인이벤트는 생중계합니다. <br />
-          결혼식 이후 하이라이트 영상을 받으실 수 있습니다. <br />
-          생중계 및 팔로업 정보를 받으실 <br />
-          <span>전화번호 & 이메일을 알려주세요!</span>
+          The main event will be streamed live. <br />
+          We will also send you a highlight of the event.. <br />
+          To receive a link to a live streaming and follow up, <br />
+          <span>please leave an email address!</span>
         </div>
         <div class="textfield-wrap">
           <input
@@ -61,7 +65,7 @@
       </div>
 
       <div class="quest">
-        <p>결혼식에 듣고싶은 BGM이 있다면?</p>
+        <p>Please recommend any music for the wedding!</p>
         <textarea
           rows="3"
           cols="20"
@@ -70,36 +74,8 @@
         />
       </div>
 
-      <div class="quest flex">
-        <p>아날로그 청첩장을 받으시겠습니까?</p>
-        <div class="radio-wrap">
-          <label :class="rsvp.get_paper_invitation == 'Y' ? 'active' : ''">
-            YES
-            <input
-              type="radio"
-              name="get_paper_invitation"
-              value="Y"
-              v-model="rsvp.get_paper_invitation"
-            />
-          </label>
-          <label :class="rsvp.get_paper_invitation == 'N' ? 'active' : ''">
-            NO
-            <input
-              type="radio"
-              name="get_paper_invitation"
-              value="N"
-              v-model="rsvp.get_paper_invitation"
-            />
-          </label>
-        </div>
-      </div>
-
       <div class="quest">
-        <p>서새롬 & 박재용의 2세 이름은 무엇이 좋을까요?</p>
-        <p class="helper-question">
-          아이가 생길 경우 참고할 예정이며, 아이의 이름으로 선정 시 소정의
-          상품을 제공합니다!
-        </p>
+        <p>Recommend a name for Saerom & Jaeyong's future baby!</p>
         <textarea rows="3" cols="20" v-model="rsvp.junior_name" />
       </div>
 
@@ -195,28 +171,31 @@
 
     <div class="divide"></div>
 
-    <Eventline />
-
-    <div class="divide"></div>
-
     <Cheer />
 
     <div class="divide"></div>
 
     <div id="funding" ref="funding">
       <div>
-        <h3>사랑의 리퀘스트</h3>
+        <h3>The Request of Love</h3>
         <p>
-          한국의 유구한 부조 문화는 조선시대까지 거슬러 올라 갑니다. 선조들의
-          지혜. 축의금은 새로 시작하는 한 쌍을 위한 일종의 크라우드 펀딩이라 할
-          수 있죠. 삶의 다음 장을 시작하는 서새롬 & 박재용의 씨앗 자금 크라우드
-          펀딩에 아낌 없이 동참해주세요!
+          In Korea, the culture of mutual support for life events traces back to
+          the 15th century. One might say that Koreans have been practicing
+          solidarity through their self-organized crowd funding culture. Now,
+          please join us for a crowd funding for the kickstart of a newly-wed
+          couple!
+        </p>
+        <p>
+          You can send cryptocurrency as well as fiat currency. Are you curious
+          about the future in ten years? If you send BTC & ETH, we will 'HODL'
+          it until 2030 and publish the results. We will also donate a portion
+          of your support.
         </p>
 
-        <p class="bold">
+        <!-- <p class="bold">
           * BTC/ETC 축의금은 2030년까지 'HODL'후 다음 세대를 위해 쓸 계획입니다.
         </p>
-        <p class="bold">* 축의금의 일부는 기부 후 내역을 공유하겠습니다.</p>
+        <p class="bold">* 축의금의 일부는 기부 후 내역을 공유하겠습니다.</p> -->
         <div class="radio-wrap">
           <label :class="payment_method == '송금하기' ? 'active' : ''">
             송금하기
@@ -309,13 +288,13 @@
           <input
             id="description"
             type="text"
-            placeholder="이름"
+            placeholder="name"
             v-model="funding.name"
           />
           <input
             id="amount"
             type="number"
-            placeholder="축의금 금액"
+            placeholder="Amount"
             v-model="funding.amount"
           />
           <div class="dropdown">
@@ -336,7 +315,7 @@
                   v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
-                <span class="event-name">혼수 및 주거환경 개선</span>
+                <span class="event-name">Improve living condition</span>
               </label>
               <label>
                 <input
@@ -346,7 +325,9 @@
                   v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
-                <span class="event-name">국내외 친지 방문 경비</span>
+                <span class="event-name"
+                  >Visit relatives in Korea & overseas</span
+                >
               </label>
               <label>
                 <input
@@ -356,7 +337,17 @@
                   v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
-                <span class="event-name">아이를 위해 쓰기</span>
+                <span class="event-name">Keep it for the child(ren)</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="how_to_spend"
+                  value="배움을 위해 쓰기"
+                  v-model="funding.how_to_spend"
+                />
+                <span class="custom"></span>
+                <span class="event-name">Learn new things</span>
               </label>
               <label>
                 <input
@@ -366,7 +357,7 @@
                   v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
-                <span class="event-name">HODL (2030년까지)</span>
+                <span class="event-name">HODL (until 2030)</span>
               </label>
               <label>
                 <input
@@ -376,20 +367,21 @@
                   v-model="funding.how_to_spend"
                 />
                 <span class="custom"></span>
-                <span class="event-name">어디든 필요한 곳에</span>
+                <span class="event-name">Use for yourselves</span>
               </label>
             </div>
           </div>
           <input
             type="text"
-            placeholder="오프라인 불참시 답례품 수령을 위한 주소를 알려주세요."
+            placeholder="our address to receive our gift"
             v-model="funding.address"
           />
         </div>
 
         <div class="box-quest">
           <p>
-            "새롬 & 재용 인생의 중요한 순간을 알리는 소식지를 받아보시겠어요?"
+            Would you like to get updates on Saerom & Jaeyong's key life moments
+            in the coming years?
           </p>
           <div class="left-radio-wrap">
             <label>
@@ -437,42 +429,44 @@
     <div class="divide"></div>
 
     <div id="funfacts" ref="funfacts">
-      <h3>결혼식 이모저모</h3>
-      <p>✓ 이 웹 청첩장은 총 {{ funfact.hit }}회 조회되었습니다.</p>
+      <h3>FUN FACT</h3>
       <p>
-        ✓ 코로나 시국에 맞춰, 참석자 중 {{ funfact.online }}%가 온라인 참석을,
-        {{ funfact.highlight }}%는 하이라이트 비디오만 수령을 합니다.
+        ✓ The e-invitation for this 'sustainable wedding' is accessed a total of
+        {{ funfact.hit }}times.
       </p>
       <p>
-        ✓ 본 페이지에 접속 중인 {{ user.name }}님을 제외하고, 가장 최근 축의금을
-        낸 분은 {{ funfact.recent_name }}님! {{ funfact.recent_time }}초 전에
-        왔다 가셨습니다.
+        ✓ Due to COVID-19,{{ funfact.online }}% of participants will join
+        online, {{ funfact.highlight }}% chose to receive the highlight video
+        only.
+      </p>
+
+      <p>
+        ✓ Beside the current visitor, the last person who sent support is
+        {{ funfact.recent_name }} who visited the e-invitation
+        {{ funfact.recent_time }}seconds ago.
       </p>
       <p>
-        ✓ 축의금을 낸 분 중 {{ funfact.max_surname }}씨 성을 가진 분이 제일
-        많네요!
+        ✓ The person who sent the biggest support lives in {{ funfact.max_amount_addr }}.
       </p>
-      <p>
-        ✓ 축의금 금액은 {{ funfact.max_amount_len }}자리 대가 제일 많고, 가장
-        많이 낸 사람은 {{ funfact.max_amount_addr }}에 살고 있습니다.
-      </p>
-      <p>✓ 결혼식 BGM 인기 곡은 {{ funfact.max_count_bgm }}입니다</p>
+      <p>✓ The most requested song for the wedding BGM is{{ funfact.max_count_bgm }}.</p>
     </div>
 
     <div class="divide"></div>
 
     <div id="after_event" ref="after_event">
-      <h3>결혼식 이후의 계획</h3>
+      <h3>After the Wedding</h3>
       <p>
-        제주도로 열흘 동안 여행을 떠납니다. 두 사람 모두 운전면허를 따서 돌아올
-        계획이에요. 이후 종로구 청운동의 보금자리에서 내집 마련의 꿈을 품고
-        생활을 이어갈 예정입니다. 올해 하반기는 지속 가능성을 화두로 일하고
-        생활하고자 합니다.
+        Saerom & Jaeyong will take a vacation in Jeju Island. There's one thing
+        the two will do: getting a driver's license. With their first driver's
+        license but without a car, the two will continue to live in their place
+        in Cheongun-dong, Seoul, with a dream to secure stability of housing one
+        day. For the rest of the year, Saerom & Jaeyong will reflect on the
+        concept of sustainability in both work and life. Let's hope to hear news
+        about a new baby sometime next year!
       </p>
       <div class="box-quest">
         <p>
-          "서새롬 & 박재용의 결혼식 이후의 일상을 알리는 소식지를
-          받아보시겠어요?"
+          Would you like to get updates on Saerom & Jaeyong's life after the wedding?
         </p>
         <div class="left-radio-wrap">
           <label>
@@ -498,8 +492,8 @@
 
     <div class="divide"></div>
 
-    <Committee />
-    <Credit />
+    <CommitteeEN />
+    <Credit :lang="'en'" />
 
     <Navigator />
   </div>
@@ -507,31 +501,32 @@
 
 <script>
 import Header from "@/components/Header";
-import Main from "@/components/Main";
-import ReasonInvite from "@/components/ReasonInvite";
-import Introduce from "@/components/Introduce";
-import Timeline from "@/components/Timeline";
-import Sustain from "@/components/Sustain";
-import Eventline from "@/components/Eventline";
+import MainEN from "@/components/MainEN";
+import ReasonInviteEN from "@/components/ReasonInviteEN";
+import IntroduceEN from "@/components/IntroduceEN";
+import TimelineEN from "@/components/TimelineEN";
+import SustainEN from "@/components/SustainEN";
+import EventlineEN from "@/components/EventlineEN";
 import Cheer from "@/components/Cheer";
-import Committee from "@/components/Committee";
+import CommitteeEN from "@/components/CommitteeEN";
 import Credit from "@/components/Credit";
 import Navigator from "@/components/Navigator";
 import vClickOutside from "v-click-outside";
 import { mapState } from "vuex";
+// import PayPal from 'vue-paypal-checkout'
 
 export default {
   name: "Invitation",
   components: {
     Header,
-    Main,
-    ReasonInvite,
-    Introduce,
-    Timeline,
-    Sustain,
-    Eventline,
+    MainEN,
+    ReasonInviteEN,
+    IntroduceEN,
+    TimelineEN,
+    SustainEN,
+    EventlineEN,
     Cheer,
-    Committee,
+    CommitteeEN,
     Credit,
     Navigator,
   },
@@ -543,9 +538,9 @@ export default {
       rsvp: {
         attend_yn: "",
         method: "",
-        name: this.$store.state.user.name,
-        phone: this.$store.state.user.phone,
-        email: this.$store.state.user.email,
+        name: "",
+        phone: "",
+        email: "",
         bgm: "",
         get_paper_invitation: "",
         junior_name: "",
@@ -559,14 +554,14 @@ export default {
       funding: {
         payment: "",
         how_to_spend: [],
-        name: this.$store.state.user.name,
+        name: "",
         amount: "",
         address: "",
       },
       subscriber_toggle: false,
       subscriber: {
-        name: this.$store.state.user.name,
-        email: this.$store.state.user.email,
+        name: "",
+        email: "",
         where_to_regist: "",
       },
       funfact: {},
@@ -580,25 +575,11 @@ export default {
     how_to_spendText() {
       if (this.funding.how_to_spend.length > 0)
         return this.funding.how_to_spend.join(", ");
-      else return "축의금을 어디에 쓸까요?";
+      else return "Please select the use of your support (multiple choice)";
     },
   },
   methods: {
-    setInitialData() {
-      (this.rsvp = {
-        attend_yn: "",
-        method: "",
-        name: this.$store.state.user.name,
-        phone: this.$store.state.user.phone,
-        email: this.$store.state.user.email,
-        bgm: "",
-        get_paper_invitation: "",
-        junior_name: "",
-        attend_time: "",
-        offline_camera_yn: "N",
-      }),
-        (this.offline_camera_yn_flag = false);
-    },
+    setInitialData() {},
     commitName(e) {
       this.$store.commit("SET_NAME", e.target.value);
     },
@@ -1112,16 +1093,16 @@ export default {
 #funfacts {
   padding: 21px 10px;
 }
-#after_event{
+#after_event {
   padding: 41px 10px;
 }
 
-#funfacts h3{
+#funfacts h3 {
   margin-bottom: 41px;
 }
 
 #after_event h3 {
-margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 #funfacts p,
 #after_event p {
@@ -1130,7 +1111,7 @@ margin-bottom: 30px;
 }
 
 #after_event p {
-  padding: 0 20px 
+  padding: 0 20px;
 }
 
 #after_event h3 {

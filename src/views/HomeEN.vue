@@ -11,16 +11,15 @@
     <div class="letter">
       <!-- <h2>{{user.name}}{{user.honor}}께,</h2> -->
       <p>
-        안녕하세요?  <br />
-        2021년 6월 27일(일요일) 치러질 서새롬, 박재용의 결혼식에
-        초대합니다. <br /> 팬데믹의 시대에 '지속가능성'을 고민하며 결혼을 결심했습니다.
+        Hello, <br />
+        Saerom & Jaeyong cordially invite you to a sustainable wedding
+        ceremony to take place on June 27, 2021 (Sunday). <br />
+        We decided to take on
+        a marriage in this time of pandemic, reflecting on sustainability.<br />
       </p>
 
       <div class="line"></div>
-      <p class="open-please">
-        아래 버튼을 눌러 청첩장을 열어주세요!
-      </p>
-
+      <p class="open-please">Click the button below to open the invitation!</p>
 
       <img class="grass" src="../assets/grass.png" />
     </div>

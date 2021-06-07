@@ -1,6 +1,38 @@
 <template>
   <div id="credit" class="session" ref="credit">
-    <p>
+    <p v-if="lang == 'en'">
+      Organized by Saerom & Jaeyong <br />
+      Supported by families and relatives <br />
+      Venue provided by Seoul Metropolitan Government <br />
+
+      Officiator | YANG Dasol <br />
+      Songs | SEO Bowon, CHOI Seoha, Roha, and Jeongha <br />
+      Dance | KIM Jihyun @인스타, SEO Junghyeon @인스타 <br />
+      Standup comedy | Northeastern Asia International Oral Culture Institute
+      (줄리아 김, 서정현, 양다솔, 임다운, 정성은, 천다민) @dongbuka_comedy
+      <br />
+
+      Cartoon | JEON Ji @hijeonji <br />
+      [구조물 미정] <br />
+      Dress | dosa @dosaflyingfish dosainc.com <br />
+
+      'The Taste of Life' ice cream | Before It Melts @before.it.melts <br />
+      Coffee | El Cafe Roasters @elcaferoasters <br />
+
+      Photo | Lead: Yezoi Hwang @yezoi, Assistants OOO @~, OOO @~. <br />
+      Video | [미정] <br />
+      Streaming | [미정] <br />
+
+      We would like to thank everyone who helped and influenced us. <br />
+
+      — <br />
+      For inquiries, please send an email to:
+      sustainable-wedding@saeromsuh.jaeyongpark.net <br />
+
+      — <br />
+      Press release [링크] <br />
+    </p>
+    <p v-else>
       기획 | 서새롬 & 박재용 <br />
       협찬 | 양가 가족 및 친지 <br />
       장소 제공 | 용산가족공원 (서울시 시설관리과) <br />
@@ -31,19 +63,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["lang"],
+};
 </script>
 
 <style>
 #credit {
-    padding: 43px 30px;
+  padding: 43px 30px;
   background-color: #d0eec6;
   background-image: url("../assets/bg.png");
 }
 #credit > p {
-font-size: 12px;
-line-height: 20px;
-letter-spacing: 0.04em;
-text-align: left;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.04em;
+  text-align: left;
 }
 </style>

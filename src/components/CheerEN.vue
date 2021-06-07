@@ -2,7 +2,7 @@
   <div id="cheer" ref="cheer">
     <div class="cheer-header">
       <p>
-        결혼을 앞둔 두 사람에게 <br />
+        결혼과 삶에 대해 새롬 & 재용에게 <br />
         도움이 될 이야기나 응원을 남겨주시겠어요?
       </p>
     </div>

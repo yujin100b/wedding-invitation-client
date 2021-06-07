@@ -11,12 +11,12 @@
           <div class="event">
             <div class="flag-wrapper">
               <span class="time-wrapper"
-                ><span class="time">2011년 6월 11일</span></span
+                ><span class="time">June 11, 2011</span></span
               >
             </div>
             <div class="desc">
-              영등포에서 열린 '6.11 탈핵 행진'에서 촬영을 맡았던 서새롬의
-              카메라에 박재용이 포착되다.
+              Jaeyong is caught on Saerom's camera during the June 11
+              Anti-nuclear March. The two didn't know each other then.
             </div>
           </div>
         </li>
@@ -26,12 +26,13 @@
           <div class="event">
             <div class="flag-wrapper">
               <span class="time-wrapper"
-                ><span class="time">2017년 3월 14일 </span></span
+                ><span class="time">March 14, 2017</span></span
               >
             </div>
             <div class="desc">
-              뮤추얼 프렌드인 정아람과 '더북소사이어티'에서 만나 함께 '따릉이'를
-              타다.
+              Saerom & Jaeyong shared a public bicycle ride (Ttareungyi) with
+              their mutual friend, JEONG Aram after meeting at a bookshop The
+              Book Society.
             </div>
           </div>
         </li>
@@ -41,12 +42,12 @@
           <div class="event">
             <div class="flag-wrapper">
               <span class="time-wrapper"
-                ><span class="time">2017년 4월 6일</span></span
+                ><span class="time">April 6, 2017</span></span
               >
             </div>
             <div class="desc">
-              밤 11시경, 종묘 인근에서 따릉이를 타던 중 '미지의 상수 x'에 관해
-              논의하다.
+              Around 11 p.m., the two discussed 'an unknown invariable X' near
+              Jongmyo, a royal shrine with a public park.
             </div>
           </div>
         </li>
@@ -55,10 +56,13 @@
           <div class="event">
             <div class="flag-wrapper">
               <span class="time-wrapper"
-                ><span class="time">2019년 3월</span></span
+                ><span class="time">March 2019</span></span
               >
             </div>
-            <div class="desc">한 건물의 1층과 3층에 살기 시작하다.</div>
+            <div class="desc">
+              Saerom & Jaeyong started to live in the same building, on the
+              first and third floors.
+            </div>
           </div>
         </li>
 
@@ -66,10 +70,10 @@
           <div class="event">
             <div class="flag-wrapper">
               <span class="time-wrapper"
-                ><span class="time">2021년 1월 29일</span></span
+                ><span class="time">January 29, 2021</span></span
               >
             </div>
-            <div class="desc">서새롬, 박재용에게 프로포즈하다.</div>
+            <div class="desc">Saerom proposed to Jaeyong.</div>
           </div>
         </li>
       </ul>

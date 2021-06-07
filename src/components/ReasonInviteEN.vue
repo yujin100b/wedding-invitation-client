@@ -2,8 +2,8 @@
   <div id="reason_invite" ref="reason_invite">
     <img src="../assets/bg-skyblue.png" />
     <p>
-      코로나19로 오프라인 참석이 제한되어 있지만, 인생의 중요한 일을 함께
-      나누고자 초대장을 전합니다. - 삶의 다음 장을 시작하는 서새롬 & 박재용 드림
+      We would like to share this invitation with you, although off-line
+      participation is limited due to COVID-19 restrictions. - Saerom & Jaeyong
     </p>
   </div>
 </template>

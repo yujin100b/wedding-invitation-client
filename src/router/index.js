@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import HomeEN from '../views/HomeEN.vue'
 
 Vue.use(VueRouter)
 
@@ -16,15 +17,24 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/open',
+    path: '/KO/open',
     name: 'Invitation',
     component: () => import('../views/Invitation.vue'),
   },
   {
-    path: '/:code',
+    path: '/EN/open',
+    name: 'Home',
+    component: () => import('../views/InvitationEN.vue'),
+  },
+  {
+    path: '/KO',
     name: 'Home',
     component: Home,
-    props: true, 
+  },
+  {
+    path: '/EN',
+    name: 'Home',
+    component: HomeEN,
   },
   {
     path: '/',

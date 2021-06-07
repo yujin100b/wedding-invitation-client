@@ -2,16 +2,17 @@
   <div id="top" class="section" ref="top">
     <img src="../assets/main.png" />
     <p>
-      지속가능 결혼식 <br />
-2021년 6월 27일 일요일 <br />
-용산가족공원 <br />
-야외결혼식장 <br />
+      Sustainable Wedding <br />
+      June 27, 2021 (Sunday) <br />
+      Yongsan Family Park <br />
+      Seoul, South Korea<br />
     </p>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["user"],
 };
 </script>
 
@@ -43,5 +44,4 @@ export default {
   width: 248px;
   margin: 0;
 }
-
 </style>

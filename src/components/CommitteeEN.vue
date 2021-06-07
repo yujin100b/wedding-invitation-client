@@ -2,26 +2,30 @@
   <div id="committee" ref="committee">
     <div class="committee-header">
       <img src="../assets/leaf-left.png" />
-      <h3>결혼식 위원회</h3>
+      <h3>Marriage Council</h3>
       <img src="../assets/leaf-right.png" />
     </div>
 
     <div class="committee-body">
       <p>
-        결혼은 둘이서만 하는 게 아니라고들 합니다. 결혼을 통해 개인으로서의 두
-        사람 뿐 아니라 지금까지의 삶을 통해 쌓아온 '공동체'가 만나기 때문인 듯
-        합니다. 그렇다면 단순히 혈연이나 소속을 넘어선 우리의 공동체는
-        무엇이어야 할까요? 우리는 10명의 친구들을 이 결혼식의 '위원'으로
-        초대하고, 결혼식 전반에 대한 제안과 의견을 구했습니다.
+        It is said that a wedding is not just about the two people getting
+        married. The reason might be that a wedding connects different
+        'communities' that have been accumulated through the lives of the two
+        people. Then, what should be a community that goes beyond family ties
+        and social affiliations? We have invited our friends as 'council
+        members' for this wedding, sharing the process and asked for comments
+        and suggestions.
+
         <br />
         <br />
-        <span class="bold">소개합니다! </span>
+        <span class="bold">Let us introduce our dear friends!</span>
         <span class="small">(가나다 순)</span>
       </p>
     </div>
 
     <div class="friends">
       <div class="friend">
+
       </div>
     </div>
   </div>
@@ -76,9 +80,8 @@ export default {};
   margin-bottom: 29px;
 }
 #committee .friend:nth-child(3n-1),
-#committee .friend:nth-child(3n)
-{
-    margin-left:3px;
+#committee .friend:nth-child(3n) {
+  margin-left: 3px;
 }
 #committee .friend p {
   margin: 0;
